@@ -6,11 +6,11 @@ def read_products():
     return Book.query.all()
 
 
-def read_user(Email=None):
+def read_user(email=None):
     a = User.query
 
-    if Email:
-        a = a.filter(User.email.contains(Email))
+    if email:
+        a = a.filter(User.email.contains(email))
     return a.all()
 
 
