@@ -1,0 +1,27 @@
+{% extends "admin/master.html" %}
+
+{% block head_css %}
+    {{ super() }}
+    <style>
+        .navbar{
+            padding: 0px !important;
+            margin: 0px !important;
+        }
+        .collapse{
+            background: #ff7069 !important;
+        }
+        .container{
+            max-width: 100% !important;
+            padding: 0px !important;
+            margin: 0px !important;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    {% if current_user.is_authenticated %}
+        {% include "main.html" %}
+    {% else %}
+        {% include "admin/login.html" %}
+    {% endif %}
+{% endblock %}
