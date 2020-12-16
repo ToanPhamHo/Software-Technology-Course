@@ -11,6 +11,16 @@ def index():
     return render_template("index.html")
 
 
+@app.route("/main")
+def main():
+    kw = request.args.get("keyword")
+
+    if kw:
+        return render_template("lookUp.html", product_1=dao.read_products(keyword=kw))
+    else:
+        return render_template("main.html", product_1=dao.read_products())
+
+
 @login.user_loader
 def user_load(user_id):
     return User.query.get(user_id)
@@ -35,8 +45,7 @@ def login_admin():
                     flask.flash('Logged in successfully ! Hello %s' % user.username)
                     return redirect("/admin")
             else:
-                flask.flash('Logged in successfully ! Hello %s' % user.username)
-                return render_template("main.html", product_1=dao.read_products())
+                return redirect("/main")
         else:
             error = "Invalid username or password. Please try again!"
 

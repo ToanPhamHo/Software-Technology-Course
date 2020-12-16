@@ -2,8 +2,11 @@ from app import app, db
 from app.models import Book, User, BookBorrowSlip
 
 
-def read_products():
-    return Book.query.all()
+def read_products(keyword=None):
+    q = Book.query
+    if keyword:
+        q = q.filter(Book.name.contains(keyword))
+    return q.all()
 
 
 def read_user(email=None):

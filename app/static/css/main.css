@@ -354,6 +354,14 @@ h2 {
     color: #ffffff;
 }
 
+.col-md-6 {
+    margin-top: 10px;
+}
+
+.col-md-3{
+    margin-top: -10px;
+}
+
 .bottom-bar .user {
     font-size: 0;
     text-align: right;
