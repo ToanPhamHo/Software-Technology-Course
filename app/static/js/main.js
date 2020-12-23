@@ -237,3 +237,23 @@
     });
 })(jQuery);
 
+
+function addToList (id, name, price) {
+    fetch('/api/list', {
+        'method': 'post',
+        'body': JSON.stringify({
+            'id': id,
+            'name': name,
+            'price': price
+        }),
+        'headers': {
+            'Content-Type': 'application/json'
+        }
+    }).then(res =>res.json()).then(data => {
+        console.info(data);
+        var stats = document.getElementById("list-stats")
+        stats.innerText = `(${data.total_quantity})`;
+    })
+}
+
+

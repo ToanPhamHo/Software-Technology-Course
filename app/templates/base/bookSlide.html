@@ -30,7 +30,7 @@
                                 </div>
                                 <div class="product-price price">
                                     <h3><span>$</span>{{ b.price }}</h3>
-                                    <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Borrow</a>
+                                    <input type="button" onclick="addToList({{ b.id }}, '{{ b.name }}', {{ b.price }})" value="Borrow" class="btn fa fa-shopping-cart" />
                                 </div>
                             </div>
                         </div>
@@ -38,4 +38,4 @@
                 </div>
             </div>
         </div>
-        <!-- Featured Product End -->
+<!-- Featured Product End -->

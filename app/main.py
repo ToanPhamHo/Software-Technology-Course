@@ -1,5 +1,5 @@
 import flask
-from flask import render_template, redirect, request
+from flask import render_template, redirect, request, url_for, jsonify, session
 from flask_login import login_user, login_required, current_user
 from app import app, login, dao, utils
 from app.models import *
@@ -19,6 +19,34 @@ def main():
         return render_template("lookUp.html", product_1=dao.read_products(keyword=kw))
     else:
         return render_template("main.html", product_1=dao.read_products())
+
+
+@app.route("/admin")
+def admin():
+    if current_user.is_authenticated:
+        return render_template("admin/index.html", product_1=dao.read_products())
+    else:
+        return render_template("main.html")
+
+
+@app.route("/books")
+def books():
+    return render_template("books.html", product_1=dao.read_products())
+
+
+@app.route("/bookDetail")
+def bookDetail():
+    return render_template("book-detail.html", product_1=dao.read_products())
+
+
+@app.route("/bookList")
+def bookList():
+    return render_template("book-list.html", product_1=dao.read_products())
+
+
+@app.route("/myAccount")
+def my_account():
+    return render_template("my-account.html")
 
 
 @login.user_loader
@@ -48,6 +76,8 @@ def login_admin():
                 return redirect("/main")
         else:
             error = "Invalid username or password. Please try again!"
+    else:
+        return render_template("admin/login.html")
 
     return render_template("admin/login.html", error=error)
 
@@ -75,6 +105,38 @@ def register():
             err = "Register successfully !"
 
     return render_template("admin/login.html", err=err)
+
+
+@app.route("/api/list", methods=['get', 'post'])
+def add_to_list():
+    if 'list' not in session:
+        session['list'] = {}
+
+    list = session['list']
+
+    data = request.json
+    id = str(data.get('id'))
+    name = data.get('name')
+    price = data.get('price')
+
+    if id in list:
+        list[id]['quantity'] = list[id]['quantity'] + 1
+    else:
+        list[id] = {
+            "id": id,
+            "name": name,
+            "price": price,
+            "quantity": 1
+        }
+
+    session['list'] = list
+
+    total_quan, total_amont = dao.list_stats(list)
+
+    return jsonify({
+        "total_amount": total_amont,
+        "total_quantity": total_quan
+    })
 
 
 if __name__ == "__main__":

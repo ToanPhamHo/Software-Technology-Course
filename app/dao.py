@@ -1,5 +1,5 @@
 from app import app, db
-from app.models import Book, User, BookBorrowSlip
+from app.models import Book, User, Review
 
 
 def read_products(keyword=None):
@@ -7,6 +7,11 @@ def read_products(keyword=None):
     if keyword:
         q = q.filter(Book.name.contains(keyword))
     return q.all()
+
+
+def read_review():
+    r = Review.query
+    return r.all()
 
 
 def read_user(email=None):
@@ -55,3 +60,13 @@ def add_receipt(items):
     except Exception as ex:
         print(ex)
         return False
+
+
+def list_stats(list):
+    count, price= 0, 0
+
+    for l in list.values():
+        count = count + l["quantity"]
+        price = price + l["quantity"] * l["price"]
+
+    return count, price

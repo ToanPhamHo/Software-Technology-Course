@@ -3,24 +3,504 @@
 {% block head_css %}
     {{ super() }}
     <style>
-        .navbar{
-            padding: 0px !important;
-            margin: 0px !important;
-        }
-        .collapse{
-            background: #ff7069 !important;
-        }
         .container{
             max-width: 100% !important;
-            padding: 0px !important;
-            margin: 0px !important;
         }
     </style>
 {% endblock %}
 
 {% block body %}
     {% if current_user.is_authenticated %}
-        {% include "main.html" %}
+        <!DOCTYPE html>
+        <html lang="en">
+            <head>
+                <meta charset="utf-8">
+                <title>E Store - eCommerce HTML Template</title>
+                <meta content="width=device-width, initial-scale=1.0" name="viewport">
+                <meta content="eCommerce HTML Template Free Download" name="keywords">
+                <meta content="eCommerce HTML Template Free Download" name="description">
+
+                <!-- Favicon -->
+                <link href="{{ url_for('static', filename='img/favicon.ico') }}" rel="icon">
+
+                <!-- Google Fonts -->
+                <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400|Source+Code+Pro:700,900&display=swap" rel="stylesheet">
+
+                <!-- CSS Libraries -->
+                <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+                <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+                <link href="{{ url_for('static', filename='lib/slick/slick.css') }}" rel="stylesheet">
+                <link href="{{ url_for('static', filename='lib/slick/slick-theme.css') }}" rel="stylesheet">
+
+                <!-- Template Stylesheet -->
+                <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet">
+            </head>
+
+            <body>
+                {% block header %}
+                    {% include 'base/header.html' %}
+                {% endblock %}
+
+                {% block slideShow %}
+                    {% include 'base/slideShow.html' %}
+                {% endblock %}
+
+                {% block brandSlide %}
+                    {% include 'base/brandSlide.html' %}
+                {% endblock %}
+
+                {% block feature %}
+                    {% include 'base/feature.html' %}
+                {% endblock %}
+
+                {% block category %}
+                    {% include 'base/category.html' %}
+                {% endblock %}
+
+                {% block call %}
+                    {% include 'base/call.html' %}
+                {% endblock %}
+
+                <!-- Featured Product Start -->
+                    <div class="featured-product product">
+                        <div class="container-fluid">
+                            <div class="section-header">
+                                <h1>Available Books For Borrowing</h1>
+                            </div>
+                            <div class="row align-items-center product-slider product-slider-4">
+                                    <div class="col-lg-3">
+                                        <div class="product-item">
+                                            <div class="product-title name">
+                                                <p class="title" href="#">Harry Potter 1</p>
+                                                <div class="ratting">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                </div>
+                                            </div>
+                                            <div class="product-image image">
+                                                <a href="product-detail.html">
+                                                    <img src="{{ url_for('static', filename='image/Harry-Potter-1.jpg') }}" alt="Product Image">
+                                                </a>
+                                                <div class="product-action">
+                                                    <a href="#"><i class="fa fa-cart-plus"></i></a>
+                                                    <a href="#"><i class="fa fa-heart"></i></a>
+                                                    <a href="#"><i class="fa fa-search"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="product-price price">
+                                                <h3><span>$</span>8.99</h3>
+                                                <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Borrow</a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-3">
+                                        <div class="product-item">
+                                            <div class="product-title name">
+                                                <p class="title" href="#">Harry Potter 2</p>
+                                                <div class="ratting">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                </div>
+                                            </div>
+                                            <div class="product-image image">
+                                                <a href="product-detail.html">
+                                                    <img src="{{ url_for('static', filename='image/Harry-Potter-2.jpg') }}" alt="Product Image">
+                                                </a>
+                                                <div class="product-action">
+                                                    <a href="#"><i class="fa fa-cart-plus"></i></a>
+                                                    <a href="#"><i class="fa fa-heart"></i></a>
+                                                    <a href="#"><i class="fa fa-search"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="product-price price">
+                                                <h3><span>$</span>4.87</h3>
+                                                <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Borrow</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <div class="col-lg-3">
+                                        <div class="product-item">
+                                            <div class="product-title name">
+                                                <p class="title" href="#">Harry Potter 3</p>
+                                                <div class="ratting">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                </div>
+                                            </div>
+                                            <div class="product-image image">
+                                                <a href="product-detail.html">
+                                                    <img src="{{ url_for('static', filename='image/Harry-Potter-3.jpg') }}" alt="Product Image">
+                                                </a>
+                                                <div class="product-action">
+                                                    <a href="#"><i class="fa fa-cart-plus"></i></a>
+                                                    <a href="#"><i class="fa fa-heart"></i></a>
+                                                    <a href="#"><i class="fa fa-search"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="product-price price">
+                                                <h3><span>$</span>7.99</h3>
+                                                <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Borrow</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <div class="col-lg-3">
+                                        <div class="product-item">
+                                            <div class="product-title name">
+                                                <p class="title" href="#">Harry Potter 4</p>
+                                                <div class="ratting">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                </div>
+                                            </div>
+                                            <div class="product-image image">
+                                                <a href="product-detail.html">
+                                                    <img src="{{ url_for('static', filename='image/Harry-Potter-4.jpg') }}" alt="Product Image">
+                                                </a>
+                                                <div class="product-action">
+                                                    <a href="#"><i class="fa fa-cart-plus"></i></a>
+                                                    <a href="#"><i class="fa fa-heart"></i></a>
+                                                    <a href="#"><i class="fa fa-search"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="product-price price">
+                                                <h3><span>$</span>9.11</h3>
+                                                <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Borrow</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <div class="col-lg-3">
+                                        <div class="product-item">
+                                            <div class="product-title name">
+                                                <p class="title" href="#">Harry Potter 5</p>
+                                                <div class="ratting">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                </div>
+                                            </div>
+                                            <div class="product-image image">
+                                                <a href="product-detail.html">
+                                                    <img src="{{ url_for('static', filename='image/Harry-Potter-5.jpg') }}" alt="Product Image">
+                                                </a>
+                                                <div class="product-action">
+                                                    <a href="#"><i class="fa fa-cart-plus"></i></a>
+                                                    <a href="#"><i class="fa fa-heart"></i></a>
+                                                    <a href="#"><i class="fa fa-search"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="product-price price">
+                                                <h3><span>$</span>8.87</h3>
+                                                <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Borrow</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <div class="col-lg-3">
+                                        <div class="product-item">
+                                            <div class="product-title name">
+                                                <p class="title" href="#">Harry Potter 6</p>
+                                                <div class="ratting">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                </div>
+                                            </div>
+                                            <div class="product-image image">
+                                                <a href="product-detail.html">
+                                                    <img src="{{ url_for('static', filename='image/Harry-Potter-6.jpg') }}" alt="Product Image">
+                                                </a>
+                                                <div class="product-action">
+                                                    <a href="#"><i class="fa fa-cart-plus"></i></a>
+                                                    <a href="#"><i class="fa fa-heart"></i></a>
+                                                    <a href="#"><i class="fa fa-search"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="product-price price">
+                                                <h3><span>$</span>6.00</h3>
+                                                <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Borrow</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <div class="col-lg-3">
+                                        <div class="product-item">
+                                            <div class="product-title name">
+                                                <p class="title" href="#">Harry Potter 7</p>
+                                                <div class="ratting">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                </div>
+                                            </div>
+                                            <div class="product-image image">
+                                                <a href="product-detail.html">
+                                                    <img src="{{ url_for('static', filename='image/Harry-Potter-7.jpg') }}" alt="Product Image">
+                                                </a>
+                                                <div class="product-action">
+                                                    <a href="#"><i class="fa fa-cart-plus"></i></a>
+                                                    <a href="#"><i class="fa fa-heart"></i></a>
+                                                    <a href="#"><i class="fa fa-search"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="product-price price">
+                                                <h3><span>$</span>4.87</h3>
+                                                <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Borrow</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                <!-- Featured Product End -->
+
+                {% block call2 %}
+                    {% include 'base/call2.html' %}
+                {% endblock %}
+
+                <!-- Recent Product Start -->
+                    <div class="recent-product product">
+                        <div class="container-fluid">
+                            <div class="section-header">
+                                <h1>Most Viewing Books</h1>
+                            </div>
+                            <div class="row align-items-center product-slider product-slider-4">
+                                    <div class="col-lg-3">
+                                        <div class="product-item">
+                                            <div class="product-title">
+                                                <a href="#">Soul Seek 1</a>
+                                                <div class="ratting">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                </div>
+                                            </div>
+                                            <div class="product-image">
+                                                <a href="product-detail.html">
+                                                    <img src="{{ url_for('static', filename='image/Soul-Seek-1.jpg') }}" alt="Product Image">
+                                                </a>
+                                                <div class="product-action">
+                                                    <a href="#"><i class="fa fa-cart-plus"></i></a>
+                                                    <a href="#"><i class="fa fa-heart"></i></a>
+                                                    <a href="#"><i class="fa fa-search"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="product-price">
+                                                <h3><span>$</span>1.23</h3>
+                                                <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Borrow</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <div class="col-lg-3">
+                                        <div class="product-item">
+                                            <div class="product-title">
+                                                <a href="#">Soul Seek 2</a>
+                                                <div class="ratting">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                </div>
+                                            </div>
+                                            <div class="product-image">
+                                                <a href="product-detail.html">
+                                                    <img src="{{ url_for('static', filename='image/Soul-Seek-2.jpg') }}" alt="Product Image">
+                                                </a>
+                                                <div class="product-action">
+                                                    <a href="#"><i class="fa fa-cart-plus"></i></a>
+                                                    <a href="#"><i class="fa fa-heart"></i></a>
+                                                    <a href="#"><i class="fa fa-search"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="product-price">
+                                                <h3><span>$</span>8.54</h3>
+                                                <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Borrow</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <div class="col-lg-3">
+                                        <div class="product-item">
+                                            <div class="product-title">
+                                                <a href="#">Soul Seek 3</a>
+                                                <div class="ratting">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                </div>
+                                            </div>
+                                            <div class="product-image">
+                                                <a href="product-detail.html">
+                                                    <img src="{{ url_for('static', filename='image/Soul-Seek-3.jpg') }}" alt="Product Image">
+                                                </a>
+                                                <div class="product-action">
+                                                    <a href="#"><i class="fa fa-cart-plus"></i></a>
+                                                    <a href="#"><i class="fa fa-heart"></i></a>
+                                                    <a href="#"><i class="fa fa-search"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="product-price">
+                                                <h3><span>$</span>3.65</h3>
+                                                <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Borrow</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <div class="col-lg-3">
+                                        <div class="product-item">
+                                            <div class="product-title">
+                                                <a href="#">Soul Seek 4</a>
+                                                <div class="ratting">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                </div>
+                                            </div>
+                                            <div class="product-image">
+                                                <a href="product-detail.html">
+                                                    <img src="{{ url_for('static', filename='image/Soul-Seek-4.jpg') }}" alt="Product Image">
+                                                </a>
+                                                <div class="product-action">
+                                                    <a href="#"><i class="fa fa-cart-plus"></i></a>
+                                                    <a href="#"><i class="fa fa-heart"></i></a>
+                                                    <a href="#"><i class="fa fa-search"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="product-price">
+                                                <h3><span>$</span>9.98</h3>
+                                                <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Borrow</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <div class="col-lg-3">
+                                        <div class="product-item">
+                                            <div class="product-title">
+                                                <a href="#">Soul Seek 5</a>
+                                                <div class="ratting">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                </div>
+                                            </div>
+                                            <div class="product-image">
+                                                <a href="product-detail.html">
+                                                    <img src="{{ url_for('static', filename='image/Soul-Seek-5.jpg') }}" alt="Product Image">
+                                                </a>
+                                                <div class="product-action">
+                                                    <a href="#"><i class="fa fa-cart-plus"></i></a>
+                                                    <a href="#"><i class="fa fa-heart"></i></a>
+                                                    <a href="#"><i class="fa fa-search"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="product-price">
+                                                <h3><span>$</span>9.65</h3>
+                                                <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Borrow</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <div class="col-lg-3">
+                                        <div class="product-item">
+                                            <div class="product-title">
+                                                <a href="#">Soul Seek 6</a>
+                                                <div class="ratting">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                </div>
+                                            </div>
+                                            <div class="product-image">
+                                                <a href="product-detail.html">
+                                                    <img src="{{ url_for('static', filename='image/Soul-Seek-6.jpg') }}" alt="Product Image">
+                                                </a>
+                                                <div class="product-action">
+                                                    <a href="#"><i class="fa fa-cart-plus"></i></a>
+                                                    <a href="#"><i class="fa fa-heart"></i></a>
+                                                    <a href="#"><i class="fa fa-search"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="product-price">
+                                                <h3><span>$</span>4.56</h3>
+                                                <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Borrow</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <div class="col-lg-3">
+                                        <div class="product-item">
+                                            <div class="product-title">
+                                                <a href="#">Soul Seek 7</a>
+                                                <div class="ratting">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                </div>
+                                            </div>
+                                            <div class="product-image">
+                                                <a href="product-detail.html">
+                                                    <img src="{{ url_for('static', filename='image/Soul-Seek-7.jpg') }}" alt="Product Image">
+                                                </a>
+                                                <div class="product-action">
+                                                    <a href="#"><i class="fa fa-cart-plus"></i></a>
+                                                    <a href="#"><i class="fa fa-heart"></i></a>
+                                                    <a href="#"><i class="fa fa-search"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="product-price">
+                                                <h3><span>$</span>3.21</h3>
+                                                <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Borrow</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                <!-- Recent Product End -->
+
+                {% block review %}
+                    {% include 'base/review.html' %}
+                {% endblock %}
+
+                {% block footer %}
+                    {% include 'base/footer.html' %}
+                {% endblock %}
+
+                <!-- JavaScript Libraries -->
+                <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+                <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+                <script src="{{ url_for('static', filename='lib/easing/easing.min.js') }}"></script>
+                <script src="{{ url_for('static', filename='lib/slick/slick.min.js') }}"></script>
+
+                <!-- Template Javascript -->
+                <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+            </body>
+        </html>
+
     {% else %}
         {% include "admin/login.html" %}
     {% endif %}

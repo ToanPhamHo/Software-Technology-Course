@@ -5,6 +5,7 @@ from flask_admin.contrib.sqla import ModelView
 from flask_admin import BaseView, expose
 from flask_login import UserMixin, current_user, logout_user
 from app import db, admin
+from datetime import datetime
 
 
 class User(db.Model, UserMixin):
@@ -16,19 +17,10 @@ class User(db.Model, UserMixin):
     is_active = Column(Boolean, default=False)
     username = Column(String(50), nullable=False)
     password = Column(String(50), nullable=False)
-    bookBorrowSlips = relationship('BookBorrowSlip', backref='user', lazy=True)
+    bookLists = relationship('BookList', backref='user', lazy=True)
 
     def __str__(self):
         return self.name
-
-
-class BookBorrowSlip(db.Model):
-    __tablename__ = "bookBorrowSlip"
-
-    id = Column(Integer, primary_key=True, autoincrement=True)
-    createdDate = Column(Date, nullable=False)
-    user_id = Column(Integer, ForeignKey(User.id), nullable=False)
-    books = relationship('Book', backref='bookBorrowSlip', lazy=True)
 
 
 class Book(db.Model):
@@ -37,9 +29,41 @@ class Book(db.Model):
     id = Column(Integer, primary_key=True, autoincrement=True)
     name = Column(String(255), nullable=False)
     description = Column(String(255), nullable=False)
+    quantity = Column(Integer, default=0)
     price = Column(Float, default=0)
     importedDate = Column(Date, nullable=False)
-    bookBorrowSlip_id = Column(Integer, ForeignKey(BookBorrowSlip.id), nullable=True)
+    book_details = relationship('BookListDetail', backref='book', lazy=True)
+
+    def __str__(self):
+        return self.name
+
+
+class BookList(db.Model):
+    __tablename__ = "bookList"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    created_date = Column(Date, nullable=False, default=datetime.today())
+    user_id = Column(Integer, ForeignKey(User.id))
+    details = relationship('BookListDetail', backref='bookList', lazy=True)
+
+
+class BookListDetail(db.Model):
+    __tablename__ = "bookListDetail"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    createdDate = Column(Date, nullable=False)
+    bookList_id = Column(Integer, ForeignKey(BookList.id))
+    book_id = Column(Integer, ForeignKey(Book.id))
+    quantity = Column(Integer, default=0)
+    price = Column(Float, default=0)
+
+
+class Review(db.Model):
+    __tablename__ = "review"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    name = Column(String(255), nullable=False)
+    comment = Column(String(255), nullable=False)
 
     def __str__(self):
         return self.name
@@ -65,10 +89,12 @@ class AboutUsView(BaseView):
 
 
 admin.add_view(Controller(User, db.session))
-admin.add_view(ModelView(BookBorrowSlip, db.session))
 admin.add_view(ModelView(Book, db.session))
-admin.add_view(LogoutView(name="Logout"))
+admin.add_view(ModelView(BookList, db.session))
+admin.add_view(ModelView(BookListDetail, db.session))
 admin.add_view(AboutUsView(name='About us'))
+admin.add_view(LogoutView(name="Logout"))
+
 
 if __name__ == "__main__":
     db.create_all()
